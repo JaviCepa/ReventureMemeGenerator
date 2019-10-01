@@ -3,23 +3,39 @@
         <div class="container" id="header">
             <slot name="header"></slot>
         </div>
+        <div class="image">
+            <slot name="canvasComponent"></slot>
+        </div>
         <div class="container" id="footer">
             <slot name="footer"></slot>
         </div>
     </div>
 </template>
+<script>
+    export default{
+        name:'template',
+    }
 
-<style>
+
+</script>
+
+
+<style type="text/css" media="screen, print">
     @font-face {
-        font-family: bitoperator;
-        src: url('../assets/fonts/8bitoperator.ttf') format('ttf');
+        font-family:"8bitoperator JVE Regular";
+        src:url("../assets/fonts/8bitoperator_jve.eot?") format("eot"),
+            url("../assets/fonts/8bitoperator_jve.woff") format("woff"),
+            url("../assets/fonts/8bitoperator_jve.ttf") format("truetype"),
+            url("../assets/fonts/8bitoperator_jve.svg#8bitoperator-JVE") format("svg");
+        font-weight:normal;
+        font-style:normal;
     }
     #main{
-        background: #b13a40;
+        background: yellowgreen;
         height: 576px;
         padding:0px;
         width:1024px;
-        font-family: bitoperator;
+        font-family: "8bitoperator JVE Regular",serif;
     }
     #header{
         background: #222035;
@@ -36,5 +52,4 @@
         color:aliceblue;
 
     }
-
 </style>

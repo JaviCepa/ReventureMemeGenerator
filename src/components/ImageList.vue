@@ -1,6 +1,7 @@
 <template>
     <div v-if="images.length">
         <p>Dentro de Images {{ images.length }}</p>
+
     </div>
     <b-alert v-else show variant="info">No Images found</b-alert>
 </template>
