@@ -1,12 +1,18 @@
 <template>
     <div id="mainText">
-        <textarea v-model="msg" id="text" class="column is-narrow" />
+        <b-form-textarea
+                id="textarea"
+                v-model="msg"
+                rows="3"
+                max-rows="3"
+                no-resize
+        ></b-form-textarea>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Footer",
+        name: "FooterComponent",
         data(){
             return{
                 msg:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet ex pretium lacus maximus condimentumeu sit amet nibh. Nam luctus condimentum velit in vehicula. Vivamus rutrum diam sit amet arcu tempor, tempus tincidunt sem rutrum."
@@ -17,17 +23,17 @@
 
 <style scoped>
     #mainText{
-        padding:10px;
+        padding:0px;
     }
-    #text{
-        color: white;
-        font-size: 15pt;
-    }
-    textarea{
+    #textarea{
         border: none;
         background:none;
         padding: 10px;
-        width:100%;
-        height:172px;
+        resize:none;
+        color: white;
+        font-size: 20pt;
+    }
+    #textarea:focus{
+        border: none;
     }
 </style>

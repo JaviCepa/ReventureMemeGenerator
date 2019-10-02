@@ -6,30 +6,37 @@
 </template>
 
 <script>
+    import {mapState,mapMutations} from 'vuex'
+
     export default {
         name: "CanvasComponent",
         methods: {
-            drawBackgroundImage: function(ctx, canvas,img) {
-                var canvas = document.getElementById('canvas')
-                var ctx = canvas.getContext('2d')
+            drawBackgroundImage: function (img,canvas,ctx) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                img.src = '../images/volcano.png';
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                img.onload = function () {
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                }
+            },
+            drawImage: function(img){
+                this.drawBackgroundImage(img,this.canvas,this.ctx);
             }
         },
         mounted() {
-            var img = new Image();
-            //this.trackTransforms()
-            var canvas = document.getElementById('canvas')
-            var ctx = canvas.getContext('2d')
-            this.drawBackgroundImage(ctx,canvas,img)
-            //this.initializeFunctions()
+            this.canvas = document.getElementById('canvas');
+            this.ctx = this.canvas.getContext('2d');
+            const img = new Image();
+            img.src = '../images/volcano.png';
+            this.drawBackgroundImage(img,this.canvas,this.ctx)
+        },
+        data: function(){
+            return {
+                canvas: null,
+                ctx : null
+            }
+
         }
     }
 </script>
 
 <style scoped>
-    canvas{
-        background:red;
-    }
 </style>

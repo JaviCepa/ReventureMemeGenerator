@@ -1,39 +1,70 @@
 <template>
   <div id="app">
-    <div>
       <meme-layout>
-        <template slot="header">
-          <header-template></header-template>
+        <template slot="controls">
+          <controls></controls>
+        </template>
+        <template slot="headercontent">
+          <header-component></header-component>
         </template>
         <template slot="canvasComponent">
-          <canvas-component></canvas-component>
+          <canvas-component ref="canvas"></canvas-component>
         </template>
-        <template slot="footer">
-          <footer-template></footer-template>
+        <template slot="footercontent">
+          <footer-component></footer-component>
+        </template>
+        <template slot="uploadImage">
+          <uploadimage></uploadimage>
         </template>
       </meme-layout>
-    </div>
   </div>
 </template>
 
 <script>
 
+  import {mapState,mapMutations,mapGetters} from 'vuex'
+
   import MemeLayout from '@/components/MemeLayout'
   import ImageList from '@/components/ImageList'
-  import HeaderTemplate from '@/components/Header'
-  import FooterTemplate from "@/components/Footer"
-  import CanvasComponent from "@/components/CanvasComponent";
+  import HeaderComponent from '@/components/Headercomponent'
+  import FooterComponent from '@/components/Footercomponent'
+  import CanvasComponent from '@/components/CanvasComponent'
+  import Controls from "@/components/Controls";
+  import uploadimage from "@/components/uploadimage";
 
 export default {
   name: 'app',
   components: {
-    MemeLayout,ImageList, HeaderTemplate, FooterTemplate, CanvasComponent
+    MemeLayout, ImageList, HeaderComponent, FooterComponent, CanvasComponent, Controls, uploadimage
     },
     data() {
       return {
-        output: null
+        output: null,
+        path: '../images/'
       }
-    }
+    },
+    computed:{
+      ...mapState(['images','index']),
+      ...mapGetters('images', ['getImage']),
+    },
+    methods:{
+      nextImage : function(event){
+        let canvas = this.$refs.canvas.canvas;
+        let ctx = this.$refs.canvas.ctx;
+
+        let img = new Image();
+        let index = this.$store.state.index;
+
+        img.src = this.path + this.$store.state.images[index].name;
+
+        this.$store.state.index = (index +1) %  this.$store.state.images.length;
+
+        this.$refs.canvas.drawImage(img);
+      }
+  },
+  mounted() {
+      this.$store.dispatch('fetchImages')
+  }
 }
 
 
@@ -48,9 +79,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size:50px;
-    color:red;
-  margin:auto;
-  margin-top:30px;
+  color:red;
+  background-color: #a3b8a0;
 }
 
 

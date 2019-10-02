@@ -1,22 +1,22 @@
 <template>
     <div class="columns">
         <div class="column" id="maintitle">
-            <input v-model="title"/>
+            <input maxlength="30" v-model="title"/>
         </div>
         <div class="column is-narrow" id="numeration">
             <p>Final</p>
-            <input v-model="final" />
+            <p>Nº<input style="display: inline;" maxlength="3" size="3" v-model="final" /> de 100</p>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Headercomponent",
+        name: "HeaderComponent",
         data(){
             return{
                 title:  "Titulo",
-                final: "Nº101 de 100"
+                final: "101"
             }
         }
     }
@@ -26,6 +26,7 @@
     #maintitle input{
         font-size: 43pt;
         color:white;
+        width: 100%;
     }
     input{
         border: none;
@@ -40,11 +41,13 @@
         font-size: 20pt;
         color:yellow;
         padding:0px;
+        padding-right: 40px;
 
     }
     #maintitle{
-        margin-left:5px;
+        margin-left:15px;
         padding:0px;
+        width:100px;
     }
     p {
         margin:0;

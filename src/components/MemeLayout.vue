@@ -1,19 +1,27 @@
 <template>
-    <div class="container" id="main">
-        <div class="container" id="header">
-            <slot name="header"></slot>
+    <div>
+        <div class="container" id="controls">
+            <slot name="controls"></slot>
         </div>
-        <div class="image">
-            <slot name="canvasComponent"></slot>
+        <div class="container" id="main">
+            <div class="container" id="headercontent">
+                <slot name="headercontent"></slot>
+            </div>
+            <div class="image">
+                <slot name="canvasComponent"></slot>
+            </div>
+            <div class="container" id="footercontent">
+                <slot name="footercontent"></slot>
+            </div>
         </div>
-        <div class="container" id="footer">
-            <slot name="footer"></slot>
+        <div class="container" id="uploadImage">
+            <slot name="uploadImage"></slot>
         </div>
     </div>
 </template>
 <script>
     export default{
-        name:'template',
+        name:'MemeLayout',
     }
 
 
@@ -37,13 +45,13 @@
         width:1024px;
         font-family: "8bitoperator JVE Regular",serif;
     }
-    #header{
+    #headercontent{
         background: #222035;
         height:86px;
         position:relative;
         color:aliceblue;
     }
-    #footer{
+    #footercontent{
         background: #222035;
         height:172px;
         position: absolute;
