@@ -12,18 +12,11 @@
 
 <script>
     export default {
-        name: "Header",
+        name: "Headercomponent",
         data(){
             return{
                 title:  "Titulo",
                 final: "Nº101 de 100"
-            }
-        },
-        computed: {
-            defaulttitle() {
-                if (this.title === '') return this.icons[0];
-
-                return this.value;
             }
         }
     }
