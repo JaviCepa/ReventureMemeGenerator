@@ -1,10 +1,13 @@
 <template>
     <div class="columns" id="controls">
-        <div class="column is-half">
+        <div class="column is-one-thir">
             <b-button @click="previousImage">Previous Image</b-button>
         </div>
-        <div class="column is-half">
+        <div class="column is-one-third">
             <b-button @click="nextImage">Next Image</b-button>
+        </div>
+        <div class="column is-one-thir">
+            <b-button @click="exportImage">Export Image</b-button>
         </div>
     </div>
 </template>
@@ -19,6 +22,9 @@
             },
             previousImage(){
                 console.log("previousImage");
+            },
+            exportImage(){
+                console.log("exportImage");
             }
         }
     }
@@ -29,4 +35,5 @@
         margin:auto;
         text-align: center;
     }
+
 </style>

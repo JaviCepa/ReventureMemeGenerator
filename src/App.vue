@@ -14,7 +14,7 @@
           <footer-component></footer-component>
         </template>
         <template slot="uploadImage">
-          <uploadimage></uploadimage>
+          <upload-image></upload-image>
         </template>
       </meme-layout>
   </div>
@@ -30,12 +30,12 @@
   import FooterComponent from '@/components/Footercomponent'
   import CanvasComponent from '@/components/CanvasComponent'
   import Controls from "@/components/Controls";
-  import uploadimage from "@/components/uploadimage";
+  import UploadImage from "@/components/UploadImage";
 
 export default {
   name: 'app',
   components: {
-    MemeLayout, ImageList, HeaderComponent, FooterComponent, CanvasComponent, Controls, uploadimage
+    MemeLayout, ImageList, HeaderComponent, FooterComponent, CanvasComponent, Controls, UploadImage
     },
     data() {
       return {
@@ -60,6 +60,12 @@ export default {
         this.$store.state.index = (index +1) %  this.$store.state.images.length;
 
         this.$refs.canvas.drawImage(img);
+      },
+      setImage : function(img){
+        let canvas = this.$refs.canvas.canvas;
+        let ctx = this.$refs.canvas.ctx;
+        console.log(img);
+        //this.$refs.canvas.drawImage(img);
       }
   },
   mounted() {
