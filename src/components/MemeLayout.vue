@@ -40,7 +40,7 @@
     }
     #main{
         background: yellowgreen;
-        height: 576px;
+        height: 676px;
         padding:0px;
         width:1024px;
         font-family: "8bitoperator JVE Regular",serif;
