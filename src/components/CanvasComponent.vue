@@ -18,6 +18,8 @@
                 }
             },
             drawImage: function(img){
+                console.log("drawImage");
+                console.log(img);
                 this.drawBackgroundImage(img,this.canvas,this.ctx);
             }
         },

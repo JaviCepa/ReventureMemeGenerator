@@ -2,7 +2,10 @@
   <div id="app">
       <meme-layout>
         <template slot="controls">
-          <controls></controls>
+          <controls
+              @nextimageevent="nextImage"
+              @previousimageevent="previousImage"
+          ></controls>
         </template>
         <template slot="headercontent">
           <header-component></header-component>
@@ -17,12 +20,13 @@
           <upload-image></upload-image>
         </template>
       </meme-layout>
+    <div id="filler"></div>
   </div>
 </template>
 
 <script>
 
-  import {mapState,mapMutations,mapGetters} from 'vuex'
+  import {mapState,mapGetters,mapMutations} from 'vuex'
 
   import MemeLayout from '@/components/MemeLayout'
   import ImageList from '@/components/ImageList'
@@ -45,35 +49,55 @@ export default {
     },
     computed:{
       ...mapState(['images','index']),
-      ...mapGetters('images', ['getImage']),
+      ...mapGetters(['getImage','getIndex'])
     },
     methods:{
-      nextImage : function(event){
-        let canvas = this.$refs.canvas.canvas;
-        let ctx = this.$refs.canvas.ctx;
+      nextImage: function(){
+        this.increment();
 
         let img = new Image();
-        let index = this.$store.state.index;
+        img.src = this.path + this.getImage.name;
 
-        img.src = this.path + this.$store.state.images[index].name;
-
-        this.$store.state.index = (index +1) %  this.$store.state.images.length;
-
-        this.$refs.canvas.drawImage(img);
+        this.setImage(img);
       },
-      setImage : function(img){
-        let canvas = this.$refs.canvas.canvas;
-        let ctx = this.$refs.canvas.ctx;
-        console.log(img);
-        //this.$refs.canvas.drawImage(img);
-      }
+      previousImage: function(){
+        this.decrement();
+
+        let img = new Image();
+        img.src = this.path + this.getImage.name;
+
+        this.setImage(img);
+      },
+      setImage(img){
+        let canvas = this.$refs.canvas;
+        canvas.drawImage(img);
+      },
+      exportImage(){
+        console.log("Export Image");
+      },
+      ...mapMutations({
+        increment: 'increment',
+        decrement: 'decrement'
+      })
   },
   mounted() {
-      this.$store.dispatch('fetchImages')
+      this.$store.dispatch('fetchImages');
+      let img = new Image();
+      let index = this.$store.state.index;
+      let images = this.$store.state.images;
+
+      /*
+      if(images){
+        img.src = this.path + images[index].name;
+        this.setImage(img)
+      }else{
+        console.log("No hay imagenes")
+      }
+      */
+
+
   }
 }
-
-
 
 </script>
 
@@ -88,6 +112,10 @@ export default {
   color:red;
   background-color: #a3b8a0;
 }
+  #filler{
+    background-color: #a3b8a0;
+    height:1000px;
+  }
 
 
 </style>

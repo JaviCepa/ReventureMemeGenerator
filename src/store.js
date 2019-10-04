@@ -19,19 +19,31 @@ export default new Vuex.Store({
       console.log("añado imagen")
     },
     increment(state){
-      console.log("Actualizo Index");
       state.index = (state.index + 1) % state.images.length;
+    },
+    decrement(state){
+      let newIndex = state.index - 1;
+      state.index = (newIndex < 0) ? state.images.length-1 : newIndex;
     }
 
   },
+  getters:{
+    getImage: state => {
+      return state.images[state.index];
+    },
+    getIndex: state =>{
+      return state.index;
+    },
+    getHello: state =>{
+      return "hello";
+    }
+  }
+  ,
   actions: {
     async fetchImages ({commit}) {
       const data = await fetch('/fixtures/images_data.json');
       const images = await data.json();
       commit('setImages', images, { root:true });
-    },
-    increment (context){
-      context.commit('increment');
     }
   }
 })

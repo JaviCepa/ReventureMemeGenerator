@@ -1,12 +1,12 @@
 <template>
     <div class="columns" id="controls">
-        <div class="column is-one-thir">
+        <div class="column is-one-third">
             <b-button @click="previousImage">Previous Image</b-button>
         </div>
         <div class="column is-one-third">
             <b-button @click="nextImage">Next Image</b-button>
         </div>
-        <div class="column is-one-thir">
+        <div class="column is-one-third">
             <b-button @click="exportImage">Export Image</b-button>
         </div>
     </div>
@@ -16,14 +16,14 @@
     export default {
         name: "Controls",
         methods: {
-            nextImage(){
-               // $parent.nextImage();
-                console.log("nextImage");
+            nextImage: function(){
+                this.$emit('nextimageevent');
             },
-            previousImage(){
-                console.log("previousImage");
+            previousImage: function(){
+                this.$emit('previousimageevent');
             },
-            exportImage(){
+            exportImage: function(){
+                //this.exportImageParent();
                 console.log("exportImage");
             }
         }
