@@ -33,9 +33,6 @@ export default new Vuex.Store({
     },
     getIndex: state =>{
       return state.index;
-    },
-    getHello: state =>{
-      return "hello";
     }
   }
   ,

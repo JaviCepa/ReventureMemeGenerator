@@ -5,6 +5,7 @@
           <controls
               @nextimageevent="nextImage"
               @previousimageevent="previousImage"
+              @exportimageevent="exportImage"
           ></controls>
         </template>
         <template slot="headercontent">
@@ -26,7 +27,7 @@
 
 <script>
 
-  import {mapState,mapGetters,mapMutations} from 'vuex'
+  import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
 
   import MemeLayout from '@/components/MemeLayout'
   import ImageList from '@/components/ImageList'
@@ -56,7 +57,7 @@ export default {
         this.increment();
 
         let img = new Image();
-        img.src = this.path + this.getImage.name;
+        img.src = this.path + this.getImage.name;//.name;
 
         this.setImage(img);
       },
@@ -73,29 +74,20 @@ export default {
         canvas.drawImage(img);
       },
       exportImage(){
-        console.log("Export Image");
+        let canvas = this.$refs.canvas;
+        canvas.exportImage();
       },
-      ...mapMutations({
+      ...mapActions({
+        fetch : 'fetchImages'
+      })
+      ,...mapMutations({
         increment: 'increment',
         decrement: 'decrement'
       })
   },
   mounted() {
-      this.$store.dispatch('fetchImages');
-      let img = new Image();
-      let index = this.$store.state.index;
-      let images = this.$store.state.images;
-
-      /*
-      if(images){
-        img.src = this.path + images[index].name;
-        this.setImage(img)
-      }else{
-        console.log("No hay imagenes")
-      }
-      */
-
-
+      //
+    this.fetch();
   }
 }
 

@@ -23,8 +23,7 @@
                 this.$emit('previousimageevent');
             },
             exportImage: function(){
-                //this.exportImageParent();
-                console.log("exportImage");
+                this.$emit('exportimageevent');
             }
         }
     }

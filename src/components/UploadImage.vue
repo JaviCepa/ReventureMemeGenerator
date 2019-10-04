@@ -25,8 +25,8 @@
         methods: {
             updateImage(){
                 //this.$parent.setImage(file);
-                if(file)
-                console.log("updateImagen imagen: ",this.file );
+                //if(file)
+                //console.log("updateImagen imagen: ",this.file );
             }
         }
     }
@@ -38,6 +38,7 @@
     }
     .column{
         color:white;
-        text-align: center;
+        padding-left: 100px;
     }
+
 </style>
