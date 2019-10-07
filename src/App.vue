@@ -22,6 +22,7 @@
     <div class="column buttonColumn">
       <img src='/images/icon/next-page.png' @click="nextImage" />
     </div>
+    <img :src="img">
   </div>
 </template>
 
@@ -49,15 +50,18 @@ export default {
       }
     },
     computed:{
-      ...mapState({images: 'images',Index: 'index',uploadImage: 'uploadImage'}),
-      ...mapGetters(['getImage','getIndex'])
+      ...mapState({images: 'images', Index: 'index', uploadImage: 'uploadImage'}),
+      ...mapGetters(['getImage','getIndex']),
+      img(){
+        return this.uploadImage;
+      }
     },
     methods:{
       nextImage: function(){
         this.increment();
 
         let img = new Image();
-        img.src = this.path + this.getImage.name;//.name;
+        img.src = this.path + this.getImage.name;
 
         this.setImage(img);
       },
@@ -77,7 +81,6 @@ export default {
         let canvas = this.$refs.canvas;
         let header = this.$refs.headercomponent;
         let footer = this.$refs.footercomponent;
-        console.log(header.title);
 
         canvas.exportImage(header.title,header.final,footer.msg);
       },

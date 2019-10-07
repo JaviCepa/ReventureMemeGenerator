@@ -2,6 +2,7 @@
     <div>
         <b-upload
                 class="load"
+                style="padding:0px; border:none;"
                 v-model="file"
                 :state="Boolean(file)"
                 accept="image/*"
@@ -60,12 +61,13 @@
 
                 let  fontSize = 22,
                     width = 950,
+                    maxlines = 3,
                     lines = [],
                     line = '',
                     lineTest = '',
                     words = text.split(' '),
-                    lineSpacing = 20,
-                    currentY = 0;
+                    lineSpacing = 30,
+                    currentLine = 1;
 
                     // Font Definition
                 this.ctx.font = '20pt "8bitoperator JVE Regular"';
@@ -77,22 +79,27 @@
 
                     // Check total width of line or last word
                     if (this.ctx.measureText(lineTest).width > width) {
-                        // Calculate the new height
-                        currentY = (lines.length * (fontSize + fontSize));
 
-                        // Record and reset the current line
-                        lines.push({ text: line, height: currentY - lineSpacing });
+                        if(currentLine < maxlines){
+                            // Añadimos la line
+                            lines.push({ text: line, height: lineSpacing * currentLine});
+                            currentLine++;
+                        }
+
+                        // Reset Line
                         line = words[i] + ' ';
                     } else {
+                        // Add LineTest to Line
                         line = lineTest;
                     }
                 }
 
+                /*
                 // Catch last line in-case something is left over
                 if (line.length > 0) {
                     currentY = lines.length * fontSize + fontSize;
                     lines.push({ text: line.trim(), height: currentY });
-                }
+                }*/
 
                 // Visually output text
                 for (let i = 0, len = lines.length; i < len; i++) {
@@ -112,9 +119,6 @@
             ...mapMutations({
                 setUploadImage: 'setUploadImage'
             })
-        },
-        computed:{
-
         },
         mounted() {
             this.canvas = document.getElementById('canvas');
@@ -159,9 +163,6 @@
     b-upload{
         padding:0px;
         margin:0px;
-    }
-    .upload-draggable{
-        border: 10px solid red;
     }
 
 </style>
