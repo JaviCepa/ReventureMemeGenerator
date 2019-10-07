@@ -1,12 +1,13 @@
 <template>
     <div id="mainText">
-        <b-form-textarea
-                id="textarea"
+        <textarea
+                id="textarea"s
+                type="textarea"
                 v-model="msg"
+                maxlength="240"
                 rows="3"
-                max-rows="3"
-                no-resize
-        ></b-form-textarea>
+        >
+        </textarea>
     </div>
 </template>
 
@@ -25,17 +26,21 @@
 <style scoped>
     #mainText{
         padding:0px;
+        text-align: center;
     }
     #textarea{
         border: 2px solid yellow;
         border-style: dotted;
-        background:none;
-        padding: 10px;
+        background: transparent;
+        padding: 15px;
+        overflow:hidden;
         resize:none;
         color: white;
         font-size: 20pt;
-        height: 150px;
-        margin-top: 10px;
+        height: 125px;
+        margin-top:20px;
+        width:95%;
+        font-family: "8bitoperator JVE Regular",sans-serif;
     }
     #textarea:focus{
         border: none;

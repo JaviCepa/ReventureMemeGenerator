@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="columns">
-    <div class="column buttonColumn">
+    <div class="column buttonColumn alignRight">
       <img src='/images/icon/previous-page.png' @click="previousImage" />
     </div>
       <meme-layout class="column">
@@ -19,10 +19,10 @@
           <footer-component ref="footercomponent"></footer-component>
         </template>
       </meme-layout>
-    <div class="column buttonColumn">
+    <div class="column buttonColumn alignLeft">
       <img src='/images/icon/next-page.png' @click="nextImage" />
     </div>
-    <img :src="img">
+    <!--<img :src="img">-->
   </div>
 </template>
 
@@ -109,7 +109,7 @@ export default {
 
 <style>
 #app {
-  font-family: sans-serif;
+  font-family: "8bitoperator JVE Regular",sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size:50px;
@@ -121,6 +121,12 @@ export default {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+      }
+  .alignRight{
+    text-align: right;
   }
+  .alignLeft{
+  text-align: left;
+}
 
 </style>

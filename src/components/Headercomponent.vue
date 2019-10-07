@@ -1,11 +1,11 @@
 <template>
     <div class="columns">
         <div class="column" id="maintitle">
-            <input maxlength="30" v-model="title"/>
+            <input class="titletext" maxlength="30" v-model="title"/>
         </div>
         <div class="column is-narrow" id="numeration">
             <p>Ending</p>
-            <p>#<input style="display: inline;" maxlength="3" size="3" v-model="final" /> of 100</p>
+            <p>#<input style="display: inline;font-size: 14pt" maxlength="3" size="3" v-model="final" /> of 100</p>
         </div>
     </div>
 </template>
@@ -36,6 +36,7 @@
     input{
         border: none;
         background:none;
+        font-family: "8bitoperator JVE Regular",sans-serif;
     }
     input:focus{
         background-color: cornflowerblue;
@@ -64,6 +65,9 @@
         vertical-align: center;
         padding:0px;
         width:100px;
+    }
+    .titletext{
+        width:100%;
     }
     p {
         margin:0;

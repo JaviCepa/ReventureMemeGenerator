@@ -67,7 +67,7 @@
                     lineTest = '',
                     words = text.split(' '),
                     lineSpacing = 30,
-                    currentLine = 1;
+                    currentLine = 0;
 
                     // Font Definition
                 this.ctx.font = '20pt "8bitoperator JVE Regular"';
@@ -84,6 +84,7 @@
                             // Añadimos la line
                             lines.push({ text: line, height: lineSpacing * currentLine});
                             currentLine++;
+                            console.log(currentLine);
                         }
 
                         // Reset Line
@@ -94,26 +95,39 @@
                     }
                 }
 
-                /*
+
                 // Catch last line in-case something is left over
                 if (line.length > 0) {
-                    currentY = lines.length * fontSize + fontSize;
-                    lines.push({ text: line.trim(), height: currentY });
-                }*/
+                    if(currentLine < maxlines){
+                        lines.push({ text: line.trim(), height: lineSpacing * currentLine });
+
+                    }
+
+                }
 
                 // Visually output text
                 for (let i = 0, len = lines.length; i < len; i++) {
-                    this.ctx.fillText(lines[i].text, this.offset, this.initialFooterPoint + lines[i].height);
+                    let verticalOffset = this.initialFooterPoint + lines[i].height;
+                    console.log("Dibujo la linea ", i , ": ",lines[i], " en el punto x:",this.offset," y:",verticalOffset)
+                    this.ctx.fillText(lines[i].text, this.offset, verticalOffset);
                 }
             },
             updateImage(){
                 this.setUploadImage(URL.createObjectURL(this.file));
                 this.$emit('imageUpload');
             },
+            drawWatermark(){
+                let watermarkText = "https://reventurememegen.netlify.com/"
+                this.ctx.font = '12pt "8bitoperator JVE Regular"';
+                this.ctx.fillStyle = "yellow";
+
+                this.ctx.fillText(watermarkText, this.canvas.width - 260 , this.canvas.height -5  );
+            },
             exportImage: function(title, final, text){
                 this.drawTitleBox(title);
                 this.drawFinal(final);
                 this.drawFooterBox(text);
+                this.drawWatermark();
                 this.imageLink = this.canvas.toDataURL('image/png',1.0);
             },
             ...mapMutations({

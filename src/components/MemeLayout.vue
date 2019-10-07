@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="container" id="controls">
+            <img src='/images/logo.png' />
             <slot name="controls"></slot>
         </div>
         <div class="container hero-body" id="main">
@@ -56,10 +57,12 @@
         vertical-align:top;
         z-index: 3;
         padding:5px;
+        width:100%;
 
     }
     #footercontent{
         background: #222035;
+        width: 100%;
         height:172px;
         position: absolute;
         bottom: 0px;
