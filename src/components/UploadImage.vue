@@ -2,9 +2,12 @@
     <div class="column is-narrow">
         <b-field class="file">
             <b-upload
+                    class="file"
                     v-model="file"
+                    :state="Boolean(file)"
+                    accept="image/*"
                     drag-drop
-                    @input="updateImage()"
+                    @input="updateImage"
             >
                 <a class="button is-primary">
                     <span>Click to upload</span>
@@ -15,6 +18,9 @@
 </template>
 
 <script>
+
+    import {mapState,mapMutations} from 'vuex'
+
     export default {
         name: "UploadImage",
         data() {
@@ -22,12 +28,17 @@
                 file: null,
             }
         },
+        computed: {
+            ...mapState(['images','index']),
+        },
         methods: {
             updateImage(){
-                //this.$parent.setImage(file);
-                //if(file)
-                //console.log("updateImagen imagen: ",this.file );
-            }
+                this.setUploadImage(URL.createObjectURL(this.file));
+                this.$emit('imageUpload');
+            },
+            ...mapMutations({
+                setUploadImage: 'setUploadImage'
+            })
         }
     }
 </script>
@@ -39,6 +50,10 @@
     .column{
         color:white;
         padding-left: 100px;
+    }
+    .file{
+        padding:0px;
+        margin:0px;
     }
 
 </style>

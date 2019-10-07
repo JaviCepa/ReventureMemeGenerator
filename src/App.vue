@@ -1,27 +1,27 @@
 <template>
-  <div id="app">
-      <meme-layout>
+  <div id="app" class="columns">
+    <div class="column buttonColumn">
+      <img src='/images/icon/previous-page.png' @click="previousImage" />
+    </div>
+      <meme-layout class="column">
         <template slot="controls">
           <controls
-              @nextimageevent="nextImage"
-              @previousimageevent="previousImage"
               @exportimageevent="exportImage"
           ></controls>
         </template>
         <template slot="headercontent">
-          <header-component></header-component>
+          <header-component ref="headercomponent"></header-component>
         </template>
         <template slot="canvasComponent">
-          <canvas-component ref="canvas"></canvas-component>
+          <canvas-component ref="canvas" @imageUpload="imageupload"></canvas-component>
         </template>
         <template slot="footercontent">
-          <footer-component></footer-component>
-        </template>
-        <template slot="uploadImage">
-          <upload-image></upload-image>
+          <footer-component ref="footercomponent"></footer-component>
         </template>
       </meme-layout>
-    <div id="filler"></div>
+    <div class="column buttonColumn">
+      <img src='/images/icon/next-page.png' @click="nextImage" />
+    </div>
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
       }
     },
     computed:{
-      ...mapState(['images','index']),
+      ...mapState({images: 'images',Index: 'index',uploadImage: 'uploadImage'}),
       ...mapGetters(['getImage','getIndex'])
     },
     methods:{
@@ -75,7 +75,16 @@ export default {
       },
       exportImage(){
         let canvas = this.$refs.canvas;
-        canvas.exportImage();
+        let header = this.$refs.headercomponent;
+        let footer = this.$refs.footercomponent;
+        console.log(header.title);
+
+        canvas.exportImage(header.title,header.final,footer.msg);
+      },
+      imageupload() {
+        const img = new Image();
+        img.src = this.uploadImage;
+        this.setImage(img)
       },
       ...mapActions({
         fetch : 'fetchImages'
@@ -104,10 +113,11 @@ export default {
   color:red;
   background-color: #a3b8a0;
 }
-  #filler{
-    background-color: #a3b8a0;
-    height:1000px;
+  .buttonColumn{
+    margin:auto;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
   }
-
 
 </style>

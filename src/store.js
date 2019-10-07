@@ -9,11 +9,15 @@ export default new Vuex.Store({
   },
   state: {
     images: [],
+    uploadImage: null,
     index: 0
   },
   mutations: {
     setImages(state, images){
       state.images = images
+    },
+    setUploadImage(state, image){
+      state.uploadImage = image;
     },
     addImage(state){
       console.log("añado imagen")

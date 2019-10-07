@@ -15,7 +15,8 @@
         name: "FooterComponent",
         data(){
             return{
-                msg:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet ex pretium lacus maximus condimentumeu sit amet nibh. Nam luctus condimentum velit in vehicula. Vivamus rutrum diam sit amet arcu tempor, tempus tincidunt sem rutrum."
+                // Mirar el salto de linea -----  Ending #101 of 100
+                msg:  "Tim decided to stop working and start procrastinating with meme generators. He became incredibly popular and retired from the hero business. \n(Click here to edit your own ending text)"
             }
         }
     }
@@ -26,14 +27,18 @@
         padding:0px;
     }
     #textarea{
-        border: none;
+        border: 2px solid yellow;
+        border-style: dotted;
         background:none;
         padding: 10px;
         resize:none;
         color: white;
         font-size: 20pt;
+        height: 150px;
+        margin-top: 10px;
     }
     #textarea:focus{
         border: none;
+        background-color: cornflowerblue;
     }
 </style>

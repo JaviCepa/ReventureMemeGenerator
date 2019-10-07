@@ -1,28 +1,58 @@
 <template>
     <div>
-        <canvas id="canvas" width="1024" height="576">
-        </canvas>
-        <img id="canvasOutput" v-bind:src="imageLink" />
+        <b-upload
+                class="load"
+                v-model="file"
+                :state="Boolean(file)"
+                accept="image/*"
+                drag-drop
+                @input="updateImage"
+        >
+            <canvas id="canvas" width="1024" height="576">
+            </canvas>
+        </b-upload>
+        <!--<img id="canvasOutput" v-bind:src="imageLink" />-->
     </div>
 </template>
 
 <script>
+    import {mapState,mapMutations} from 'vuex'
 
     export default {
         name: "CanvasComponent",
+        computed: {
+            ...mapState(['images','index']),
+        },
         methods: {
             drawBackgroundImage: function (img,canvas,ctx) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 img.onload = function () {
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    let ratio = img.height/img.width;
+                    let offset = canvas.height/2-canvas.width*ratio/2;
+                    ctx.drawImage(img, 0, offset, canvas.width, canvas.width*ratio);
                 }
             },
             drawImage: function(img){
                 this.drawBackgroundImage(img,this.canvas,this.ctx);
             },
-            drawTitleBox(title,final){
+            drawTitleBox(title){
               this.ctx.fillStyle = this.color;
               this.ctx.fillRect(0,0,this.canvas.width,100);
+
+                this.ctx.font = '43pt "8bitoperator JVE Regular"';
+                this.ctx.fillStyle = "white";
+
+                this.ctx.fillText(title, 25 , 60 );
+
+            },
+            drawFinal: function (text){
+                this.ctx.font = '20pt "8bitoperator JVE Regular"';
+                this.ctx.fillStyle = "yellow";
+                this.ctx.textAlign='right';
+
+                this.ctx.fillText("Ending", this.canvas.width-50 , 35 );
+                let fullText = "#" + text + " of 100";
+                this.ctx.fillText(fullText, this.canvas.width-50 , 70 );
             },
             drawFooterBox: function (text) {
                 this.ctx.fillStyle = this.color;
@@ -40,6 +70,7 @@
                     // Font Definition
                 this.ctx.font = '20pt "8bitoperator JVE Regular"';
                 this.ctx.fillStyle = "white";
+                this.ctx.textAlign='start';
 
                 for (let i = 0, len = words.length; i < len; i++) {
                     lineTest = line + words[i] + ' ';
@@ -50,7 +81,6 @@
                         currentY = (lines.length * (fontSize + fontSize));
 
                         // Record and reset the current line
-                        console.debug(currentY)
                         lines.push({ text: line, height: currentY - lineSpacing });
                         line = words[i] + ' ';
                     } else {
@@ -64,18 +94,24 @@
                     lines.push({ text: line.trim(), height: currentY });
                 }
 
-                console.log(lines);
-
                 // Visually output text
                 for (let i = 0, len = lines.length; i < len; i++) {
                     this.ctx.fillText(lines[i].text, this.offset, this.initialFooterPoint + lines[i].height);
                 }
             },
-            exportImage: function(){
-                this.drawTitleBox("Nombre del final","101");
-                this.drawFooterBox("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet ex pretium lacus maximus condimentumeu sit amet nibh. Nam luctus condimentum velit in vehicula. Vivamus rutrum diam sit amet arcu tempor, tempus tincidunt sem rutrum.");
+            updateImage(){
+                this.setUploadImage(URL.createObjectURL(this.file));
+                this.$emit('imageUpload');
+            },
+            exportImage: function(title, final, text){
+                this.drawTitleBox(title);
+                this.drawFinal(final);
+                this.drawFooterBox(text);
                 this.imageLink = this.canvas.toDataURL('image/png',1.0);
-            }
+            },
+            ...mapMutations({
+                setUploadImage: 'setUploadImage'
+            })
         },
         computed:{
 
@@ -90,6 +126,7 @@
         },
         data: function(){
             return {
+                file: null,
                 canvas: null,
                 ctx : null,
                 imageLink:null,
@@ -103,11 +140,6 @@
 </script>
 
 <style scoped>
-    #canvasOutput{
-        margin-top: 80px;
-        border-top: 10px solid whitesmoke;
-        padding-top: 15px;
-    }
     @font-face {
         font-family:"8bitoperator JVE Regular";
         src:url("../assets/fonts/8bitoperator_jve.eot?") format("eot"),
@@ -117,4 +149,19 @@
         font-weight:normal;
         font-style:normal;
     }
+    .load{
+        padding:0px;
+        border:none;
+    }
+    #canvas{
+        padding:0px;
+    }
+    b-upload{
+        padding:0px;
+        margin:0px;
+    }
+    .upload-draggable{
+        border: 10px solid red;
+    }
+
 </style>
