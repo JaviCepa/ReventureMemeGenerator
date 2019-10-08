@@ -36,9 +36,9 @@
         overflow:hidden;
         resize:none;
         color: white;
-        font-size: 20pt;
-        height: 125px;
-        margin-top:20px;
+        font-size: 23pt;
+        height: 140px;
+        margin-top:10px;
         width:95%;
         font-family: "8bitoperator JVE Regular",sans-serif;
     }
