@@ -11,7 +11,8 @@ export default new Vuex.Store({
     images: [],
     uploadImage: null,
     index: 0,
-      imageLinkRef: null
+      imageLinkRef: null,
+    title: null
   },
   mutations: {
     setImages(state, images){
@@ -32,7 +33,10 @@ export default new Vuex.Store({
     },
       setImageLink(state,image){
         state.imageLinkRef = image;
-      }
+      },
+    setTitle(state,title){
+      state.title = title;
+    }
 
   },
   getters:{

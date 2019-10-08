@@ -78,29 +78,27 @@ export default {
         let canvas = this.$refs.canvas;
         canvas.drawImage(img);
       },
-      setNextImage: function(){
-        let img = new Image();
-        img.src = this.getImage.name;
-        this.setImage(img);
-      },
       exportImage(){
         let canvas = this.$refs.canvas;
         let header = this.$refs.headercomponent;
         let footer = this.$refs.footercomponent;
+
+        this.setTitle(header.title);
 
         canvas.exportImage(header.title,header.final,footer.msg);
       },
       imageupload() {
         const img = new Image();
         img.src = this.uploadImage;
-        this.setImage(img)
+        this.setImage(img);
       },
       ...mapActions({
         fetch : 'fetchImages'
       })
       ,...mapMutations({
         increment: 'increment',
-        decrement: 'decrement'
+        decrement: 'decrement',
+        setTitle: 'setTitle'
       })
   },
   mounted() {

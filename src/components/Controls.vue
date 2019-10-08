@@ -2,7 +2,7 @@
     <div class="columns" id="controls">
         <div class="column">
             <!--<a class="blue" @click="exportImage" target="" :href="this.imageLinkRef">Export Image</a>-->
-            <a class="blue" @click="exportImage" :href="this.imageLinkRef" download="memeReventure.jpg">Export Image</a>
+            <a class="blue" @click="exportImage" :href="this.imageLinkRef" :download="downloadName">Export Image</a>
         </div>
     </div>
 </template>
@@ -19,7 +19,10 @@
             }
         },
         computed:{
-            ...mapState(['images','imageLinkRef']),
+            ...mapState(['images','imageLinkRef','title']),
+            downloadName: function(){
+                return this.title + ".jpg"
+            }
         }
     }
 </script>
