@@ -9,6 +9,7 @@
                 drag-drop
                 @input="updateImage"
         >
+        <img id="hover_instruction" src='/images/hover_instruction.png' />
             <canvas id="canvas" width="1024" height="576">
             </canvas>
         </b-upload>
@@ -168,6 +169,22 @@
         url("../assets/fonts/8bitoperator_jve.svg#8bitoperator-JVE") format("svg");
         font-weight:normal;
         font-style:normal;
+    }
+    .upload-draggable.is-primary{
+        position: relative;
+    }
+    #hover_instruction{
+        position: absolute;
+        width: 100%;
+        height: 95%;
+        opacity: 0;
+        transition: opacity .2s ease-out;
+        -moz-transition: opacity .2s ease-out;
+        -webkit-transition: opacity .2s ease-out;
+        -o-transition: opacity .2s ease-out;
+    }
+    #hover_instruction:hover{
+        opacity: 100;
     }
     .load{
         padding:0px;
