@@ -51,10 +51,7 @@ export default {
     },
     computed:{
       ...mapState({images: 'images', Index: 'index', uploadImage: 'uploadImage'}),
-      ...mapGetters(['getImage','getIndex']),
-      img(){
-        return this.uploadImage;
-      }
+      ...mapGetters(['getImage','getIndex'])
     },
     methods:{
       nextImage: function(){
@@ -76,6 +73,11 @@ export default {
       setImage(img){
         let canvas = this.$refs.canvas;
         canvas.drawImage(img);
+      },
+      setNextImage: function(){
+        let img = new Image();
+        img.src = this.getImage.name;
+        this.setImage(img);
       },
       exportImage(){
         let canvas = this.$refs.canvas;
@@ -100,6 +102,7 @@ export default {
   mounted() {
       //
     this.fetch();
+    this.setNextImage();
   }
 }
 
@@ -113,8 +116,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size:50px;
-  color:red;
-  background-color: #a3b8a0;
 }
   .buttonColumn{
     margin:auto;

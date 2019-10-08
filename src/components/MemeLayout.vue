@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="container" id="controls">
-            <img src='/images/logo.png' />
             <slot name="controls"></slot>
         </div>
         <div class="container hero-body" id="main">
@@ -71,5 +70,6 @@
         z-index: 3;
 
     }
+
 
 </style>

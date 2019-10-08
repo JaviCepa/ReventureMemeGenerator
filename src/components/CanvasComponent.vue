@@ -12,7 +12,6 @@
             <canvas id="canvas" width="1024" height="576">
             </canvas>
         </b-upload>
-        <!--<img id="canvasOutput" v-bind:src="imageLink" />-->
     </div>
 </template>
 
@@ -85,7 +84,6 @@
                             // Añadimos la line
                             lines.push({ text: line, height: lineSpacing * currentLine});
                             currentLine++;
-                            console.log(currentLine);
                         }
 
                         // Reset Line
@@ -109,7 +107,6 @@
                 // Visually output text
                 for (let i = 0, len = lines.length; i < len; i++) {
                     let verticalOffset = this.initialFooterPoint + lines[i].height;
-                    console.log("Dibujo la linea ", i , ": ",lines[i], " en el punto x:",this.offset," y:",verticalOffset)
                     this.ctx.fillText(lines[i].text, this.offset, verticalOffset);
                 }
             },
@@ -136,12 +133,15 @@
             })
         },
         mounted() {
+
             this.canvas = document.getElementById('canvas');
             this.ctx = this.canvas.getContext('2d');
             this.initialFooterPoint = (this.canvas.height - 110);
+            /*
             const img = new Image();
-            //img.src = "images/" + this.getImage.name;
+            img.src = "images/" + this.getImage.name;
             this.drawBackgroundImage(img,this.canvas,this.ctx)
+            */
         },
         data: function(){
             return {

@@ -47,6 +47,7 @@
         border: 2px solid yellow;
         border-style: dotted;
         border-radius: 5px;
+        font-size: 20pt !important;
         padding: 5px;
         height: 40px;
         width: 45px;

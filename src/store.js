@@ -55,8 +55,8 @@ export default new Vuex.Store({
 
         // Load Reventure images
         directory = '/reventureImages/';
-        extension = '.jpg';
-        for (let i=1;i<=5;i++){
+        extension = '.png';
+        for (let i=1;i<=1;i++){
             let path = directory + "reventure" + i + extension;
             let imageAux = {name: path};
             images.push(imageAux);
