@@ -42,7 +42,7 @@
         z-index: 1;
     }
     #main{
-        background: yellowgreen;
+        background: #ffffff;
         height: 576px;
         padding:0px;
         width:1024px;

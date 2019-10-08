@@ -15,7 +15,7 @@
         name: "HeaderComponent",
         data(){
             return{
-                title:  "The Meme Maker",
+                title:  "Reventure Ending Maker",
                 final: "101"
             }
         }

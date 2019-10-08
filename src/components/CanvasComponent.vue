@@ -21,7 +21,7 @@
     export default {
         name: "CanvasComponent",
         computed: {
-            ...mapState(['images','index']),
+            ...mapState(['images','index','imageLinkRef']),
             ...mapGetters(['getImage'])
         },
         methods: {
@@ -127,9 +127,11 @@
                 this.drawFooterBox(text);
                 this.drawWatermark();
                 this.imageLink = this.canvas.toDataURL('image/png',1.0);
+                this.setImageLink(this.imageLink);
             },
             ...mapMutations({
-                setUploadImage: 'setUploadImage'
+                setUploadImage: 'setUploadImage',
+                setImageLink: 'setImageLink'
             })
         },
         mounted() {
@@ -137,11 +139,10 @@
             this.canvas = document.getElementById('canvas');
             this.ctx = this.canvas.getContext('2d');
             this.initialFooterPoint = (this.canvas.height - 110);
-            /*
+
             const img = new Image();
-            img.src = "images/" + this.getImage.name;
+            img.src = "images/reventureImages/reventure1.png";
             this.drawBackgroundImage(img,this.canvas,this.ctx)
-            */
         },
         data: function(){
             return {

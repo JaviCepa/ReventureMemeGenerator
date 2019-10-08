@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     images: [],
     uploadImage: null,
-    index: 0
+    index: 0,
+      imageLinkRef: null
   },
   mutations: {
     setImages(state, images){
@@ -28,7 +29,10 @@ export default new Vuex.Store({
     decrement(state){
       let newIndex = state.index - 1;
       state.index = (newIndex < 0) ? state.images.length-1 : newIndex;
-    }
+    },
+      setImageLink(state,image){
+        state.imageLinkRef = image;
+      }
 
   },
   getters:{

@@ -102,7 +102,6 @@ export default {
   mounted() {
       //
     this.fetch();
-    this.setNextImage();
   }
 }
 
