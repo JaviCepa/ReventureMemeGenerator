@@ -33,6 +33,9 @@
 
     }
 
+    ol{
+        text-align: left;
+    }
     .tutorial h1{
         color: rgb(245, 255, 163);
     }
