@@ -1,7 +1,8 @@
 <template>
     <div class="columns" id="controls">
         <div class="column">
-            <a class="blue" @click="exportImage" target="_blank" :href="this.imageLinkRef">Export Image</a>
+            <!--<a class="blue" @click="exportImage" target="" :href="this.imageLinkRef">Export Image</a>-->
+            <a class="blue" @click="exportImage" :href="this.imageLinkRef" download="memeReventure.jpg">Export Image</a>
         </div>
     </div>
 </template>
@@ -14,7 +15,7 @@
         methods: {
             exportImage: function(){
                 this.$emit('exportimageevent');
-                console.log(this.imageLinkRef);
+                //window.open(this.imageLinkRef);
             }
         },
         computed:{
