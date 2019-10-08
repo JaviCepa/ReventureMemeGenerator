@@ -40,20 +40,20 @@
               this.ctx.fillStyle = this.color;
               this.ctx.fillRect(0,0,this.canvas.width,100);
 
-                this.ctx.font = '43pt "8bitoperator JVE Regular"';
+                this.ctx.font = '50pt "8bitoperator JVE Regular"';
                 this.ctx.fillStyle = "white";
 
-                this.ctx.fillText(title, 25 , 60 );
+                this.ctx.fillText(title, 25 , 70 );
 
             },
             drawFinal: function (text){
-                this.ctx.font = '20pt "8bitoperator JVE Regular"';
+                this.ctx.font = '26pt "8bitoperator JVE Regular"';
                 this.ctx.fillStyle = "yellow";
                 this.ctx.textAlign='right';
 
-                this.ctx.fillText("Ending", this.canvas.width-50 , 35 );
+                this.ctx.fillText("Ending", this.canvas.width-27 , 42 );
                 let fullText = "#" + text + " of 100";
-                this.ctx.fillText(fullText, this.canvas.width-50 , 70 );
+                this.ctx.fillText(fullText, this.canvas.width-27 , 78 );
             },
             drawFooterBox: function (text) {
                 this.ctx.fillStyle = this.color;
@@ -66,11 +66,11 @@
                     line = '',
                     lineTest = '',
                     words = text.split(' '),
-                    lineSpacing = 30,
+                    lineSpacing = 40,
                     currentLine = 0;
 
                     // Font Definition
-                this.ctx.font = '20pt "8bitoperator JVE Regular"';
+                this.ctx.font = '28pt "8bitoperator JVE Regular"';
                 this.ctx.fillStyle = "white";
                 this.ctx.textAlign='start';
 
@@ -117,7 +117,7 @@
             drawWatermark(){
                 let watermarkText = "https://reventurememegen.netlify.com/"
                 this.ctx.font = '12pt "8bitoperator JVE Regular"';
-                this.ctx.fillStyle = "yellow";
+                this.ctx.fillStyle = "grey";
 
                 this.ctx.fillText(watermarkText, this.canvas.width - 260 , this.canvas.height -5  );
             },
@@ -138,7 +138,7 @@
 
             this.canvas = document.getElementById('canvas');
             this.ctx = this.canvas.getContext('2d');
-            this.initialFooterPoint = (this.canvas.height - 110);
+            this.initialFooterPoint = (this.canvas.height - 120);
 
             const img = new Image();
             img.src = "images/reventureImages/reventure1.png";

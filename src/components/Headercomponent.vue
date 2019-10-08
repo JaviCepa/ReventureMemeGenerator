@@ -1,7 +1,7 @@
 <template>
     <div class="columns">
         <div class="column" id="maintitle">
-            <input class="titletext" maxlength="30" v-model="title"/>
+            <input class="titletext" maxlength="28" v-model="title"/>
         </div>
         <div class="column is-narrow" id="numeration">
             <p>Ending</p>
