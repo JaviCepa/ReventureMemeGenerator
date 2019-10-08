@@ -19,8 +19,8 @@ export default new Vuex.Store({
     setUploadImage(state, image){
       state.uploadImage = image;
     },
-    addImage(state){
-      console.log("añado imagen")
+    addImage(state,image){
+      state.images.push(image);
     },
     increment(state){
       state.index = (state.index + 1) % state.images.length;
@@ -42,9 +42,41 @@ export default new Vuex.Store({
   ,
   actions: {
     async fetchImages ({commit}) {
-      const data = await fetch('/fixtures/images_data.json');
-      const images = await data.json();
-      commit('setImages', images, { root:true });
+        let data = [];
+        let images = [];
+        let directory = '';
+        let extension = '';
+
+
+        // Load Test Images
+        data = await fetch('/fixtures/images_data.json');
+        images = await data.json();
+        commit('setImages', images, { root:true });
+
+        // Load Reventure images
+        directory = '/reventureImages/';
+        extension = '.jpg';
+        for (let i=1;i<=5;i++){
+            let path = directory + "reventure" + i + extension;
+            let imageAux = {name: path};
+            images.push(imageAux);
+        }
+
+
+
+
+      // Load Memes
+        directory = '/memes/';
+        extension = '.jpg';
+        for (let i=1;i<=27;i++){
+          let path = directory + "meme" + i + extension;
+          let imageAux = {name: path};
+          images.push(imageAux);
+        }
+
+
+
+
     }
   }
 })

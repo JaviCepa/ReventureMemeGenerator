@@ -1,10 +1,10 @@
-[{"name":"volcano.png"},
-  {"name":"bridge.png"},
-  {"name":"cannon.png"},
-  {"name":"fishing.png"},
-  {"name":"levers.png"},
-  {"name":"moat.png"},
-  {"name":"rescue.png"},
-  {"name":"valley.png"},
-  {"name":"waterfalls.png"}
+[{"name":"/reventureImages/test/volcano.png"},
+  {"name":"/reventureImages/test/bridge.png"},
+  {"name":"/reventureImages/test/cannon.png"},
+  {"name":"/reventureImages/test/fishing.png"},
+  {"name":"/reventureImages/test/levers.png"},
+  {"name":"/reventureImages/test/moat.png"},
+  {"name":"/reventureImages/test/rescue.png"},
+  {"name":"/reventureImages/test/valley.png"},
+  {"name":"/reventureImages/test/waterfalls.png"}
 ]

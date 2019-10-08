@@ -17,12 +17,13 @@
 </template>
 
 <script>
-    import {mapState,mapMutations} from 'vuex'
+    import {mapState,mapMutations,mapGetters} from 'vuex'
 
     export default {
         name: "CanvasComponent",
         computed: {
             ...mapState(['images','index']),
+            ...mapGetters(['getImage'])
         },
         methods: {
             drawBackgroundImage: function (img,canvas,ctx) {
@@ -139,7 +140,7 @@
             this.ctx = this.canvas.getContext('2d');
             this.initialFooterPoint = (this.canvas.height - 110);
             const img = new Image();
-            img.src = '../images/volcano.png';
+            //img.src = "images/" + this.getImage.name;
             this.drawBackgroundImage(img,this.canvas,this.ctx)
         },
         data: function(){
