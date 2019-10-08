@@ -1,7 +1,7 @@
 <template>
     <div class="columns" id="controls">
         <div class="column">
-            <b-button class="blue" @click="exportImage" v-bind:download="this.imageLinkRef">Export Image</b-button>
+            <b-button class="blue" @click="exportImage" :href="this.imageLinkRef">Export Image</b-button>
         </div>
     </div>
 </template>
@@ -14,6 +14,8 @@
         methods: {
             exportImage: function(){
                 this.$emit('exportimageevent');
+                var fileName = exportAs + ".txt";
+                doc.execCommand("SaveAs", null, fileName);
             }
         },
         computed:{
