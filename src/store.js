@@ -57,15 +57,6 @@ export default new Vuex.Store({
         images = await data.json();
         commit('setImages', images, { root:true });
 
-        // Load Reventure images
-        directory = '/reventureImages/';
-        extension = '.png';
-        for (let i=1;i<=1;i++){
-            let path = directory + "reventure" + i + extension;
-            let imageAux = {name: path};
-            images.push(imageAux);
-        }
-
 
 
 

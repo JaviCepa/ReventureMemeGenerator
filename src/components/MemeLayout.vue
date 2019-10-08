@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div class="container" id="controls">
-            <slot name="controls"></slot>
-        </div>
+
         <div class="container hero-body" id="main">
             <div class="hero-head container" id="headercontent">
                 <slot name="headercontent"></slot>
@@ -14,9 +12,13 @@
                 <slot name="footercontent"></slot>
             </div>
         </div>
-        <div class="container" id="uploadImage">
-            <slot name="uploadImage"></slot>
+        <div class="container" id="controls">
+            <slot name="controls"></slot>
         </div>
+        <div class="container" id="tuto">
+            <slot name="tuto"></slot>
+        </div>
+
     </div>
 </template>
 <script>
@@ -70,6 +72,8 @@
         z-index: 3;
 
     }
-
+    #controls{
+        margin-top: 15px;
+    }
 
 </style>

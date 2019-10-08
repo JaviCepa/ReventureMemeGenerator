@@ -1,7 +1,7 @@
 <template>
     <div class="columns" id="controls">
         <div class="column">
-            <b-button class="blue" @click="exportImage" :href="this.imageLinkRef">Export Image</b-button>
+            <a class="blue" @click="exportImage" target="_blank" :href="this.imageLinkRef">Export Image</a>
         </div>
     </div>
 </template>
@@ -14,8 +14,7 @@
         methods: {
             exportImage: function(){
                 this.$emit('exportimageevent');
-                var fileName = exportAs + ".txt";
-                doc.execCommand("SaveAs", null, fileName);
+                console.log(this.imageLinkRef);
             }
         },
         computed:{
@@ -36,6 +35,9 @@
         text-shadow: -1px -1px 0 #2C7982;
         background: #3EACBA;
         border: 1px solid #379AA4;
+        padding:10px;
+        padding-right: 100px;
+        padding-left: 100px;
         background-image: -webkit-linear-gradient(top, #48C6D4, #3EACBA);
         background-image: -moz-linear-gradient(top, #48C6D4, #3EACBA);
         background-image: -ms-linear-gradient(top, #48C6D4, #3EACBA);
@@ -47,6 +49,9 @@
         -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #338A94, 0 4px 2px rgba(0, 0, 0, .5);
         -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #338A94, 0 4px 2px rgba(0, 0, 0, .5);
         box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #338A94, 0 4px 2px rgba(0, 0, 0, .5);
+        width:600px;
+        height:100px;
+        margin-top: 30px;
     }
 
     .blue:hover {

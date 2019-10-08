@@ -32,6 +32,7 @@
         border-radius: 5px;
         height: 75px;
         margin-top: 10px;
+        padding-left: 20px;
     }
     input{
         border: none;

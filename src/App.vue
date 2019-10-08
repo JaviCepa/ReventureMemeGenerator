@@ -1,14 +1,9 @@
 <template>
   <div id="app" class="columns">
     <div class="column buttonColumn alignRight">
-      <img src='/images/icon/previous-page.png' @click="previousImage" />
+      <a class="buttonPrevious" @click="previousImage" />
     </div>
       <meme-layout class="column">
-        <template slot="controls">
-          <controls
-              @exportimageevent="exportImage"
-          ></controls>
-        </template>
         <template slot="headercontent">
           <header-component ref="headercomponent"></header-component>
         </template>
@@ -18,9 +13,17 @@
         <template slot="footercontent">
           <footer-component ref="footercomponent"></footer-component>
         </template>
+        <template slot="controls">
+          <controls
+                  @exportimageevent="exportImage"
+          ></controls>
+        </template>
+        <template slot="tuto">
+          <tutorial></tutorial>
+        </template>
       </meme-layout>
     <div class="column buttonColumn alignLeft">
-      <img src='/images/icon/next-page.png' @click="nextImage" />
+      <a class="buttonNext"  @click="nextImage" />
     </div>
     <!--<img :src="img">-->
   </div>
@@ -37,11 +40,12 @@
   import CanvasComponent from '@/components/CanvasComponent'
   import Controls from "@/components/Controls";
   import UploadImage from "@/components/UploadImage";
+  import Tutorial from "@/components/Tutorial"
 
 export default {
   name: 'app',
   components: {
-    MemeLayout, ImageList, HeaderComponent, FooterComponent, CanvasComponent, Controls, UploadImage
+    MemeLayout, ImageList, HeaderComponent, FooterComponent, CanvasComponent, Controls, UploadImage, Tutorial
     },
     data() {
       return {
@@ -116,17 +120,51 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   font-size:50px;
 }
+
+  .column{
+    text-align: center;
+  }
   .buttonColumn{
-    margin:auto;
+    /*margin:auto;*/
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+    margin-top: 250px;
+
       }
   .alignRight{
     text-align: right;
+
   }
   .alignLeft{
-  text-align: left;
-}
+    text-align: left;
+  }
+
+
+  .buttonNext{
+    background-image: url('/images/icon/next-page.png');
+    height: 64px;
+    width: 64px;
+  }
+  .buttonNext:hover{
+    background-image: url("/images/icon/next-page-hover.png");
+  }
+
+  .buttonPrevious{
+    background-image: url('/images/icon/previous-page.png');
+    height: 64px;
+    width: 64px;
+    margin: auto;
+    text-align: right;
+    margin-right: 0px;
+  }
+
+  .buttonPrevious:hover{
+    background-image: url("/images/icon/previous-page-hover.png");
+  }
+
+  .buttonNext, .buttonPrevious{
+    display:block;
+  }
 
 </style>
